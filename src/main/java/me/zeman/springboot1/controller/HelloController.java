@@ -1,6 +1,9 @@
 package me.zeman.springboot1.controller;
 
+import com.google.gson.Gson;
+import com.mashape.unirest.http.JsonNode;
 import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
+import me.zeman.springboot1.model.Person;
 import me.zeman.springboot1.service.HelloService;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
@@ -20,35 +25,50 @@ public class HelloController {
     @Autowired
     private HelloService helloService;
 
-    @RequestMapping("/hello")
-    public String index() {
-        return "hello";
-    }
-
-    @GetMapping("/greeting")
+    @GetMapping("/hello")
     @ResponseBody
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, HttpServletResponse response) {
+    public ArrayList<Person> greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, HttpServletRequest request,  HttpServletResponse response) {
 
         int r = new Random().nextInt(10);
 
-        System.out.println("name: " + name);
+        Gson j = new Gson();
+        Person p = new Person();
 
-        if (r==1){
+        p.setName(name);
+        p.setNumber("123");
+
+        Person p2 = new Person();
+
+        p2.setName("Jan");
+        p2.setNumber("123456789");
+
+        ArrayList<Person> people = new ArrayList();
+
+        people.add(p);
+        people.add(p2);
+
+        if (r == 1){
             try {
-                throw new Exception("my own exception");
+
+                throw new Exception("My own exception");
 
             } catch (Exception e) {
-                System.out.print("exception: " + e.toString());
+                System.out.println("Exception: " + e.toString());
             } finally {
                 try {
-                    response.sendError(500, "9Mu own message) Our internal error");
+                    response.setContentType("text/html");
+                    response.sendError(500, "(My own message) Our internal error");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
             }
+        } else {
+
+            response.setContentType("application/json");
         }
 
-        return "greeting";
+        return people;
     }
 
     @RequestMapping("/")

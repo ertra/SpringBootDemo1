@@ -35,7 +35,7 @@ public class WeatherService {
         JsonNode j = jsonResponse.getBody();
         //JSONObject obj = new JSONObject(jsonResponse.getBody().toString());
 
-        return jsonResponse.getBody().toString();
+        return j.toString();
 
     }
 
