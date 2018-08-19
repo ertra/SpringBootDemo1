@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 public class WeatherController {
 
@@ -20,7 +23,10 @@ public class WeatherController {
 
     @RequestMapping("/weather")
     @ResponseBody
-    public String helloWorld() {
-        return weatherService.getWeather();
+    public String helloWorld(HttpServletRequest request, HttpServletResponse response) {
+
+        String w = weatherService.getWeather();
+
+        return w;
     }
 }

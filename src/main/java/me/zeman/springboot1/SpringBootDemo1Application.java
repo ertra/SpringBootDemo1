@@ -13,3 +13,12 @@ public class SpringBootDemo1Application {
 
     }
 }
+
+/*
+
+./mvnw spring-boot:run
+./mvnw clean package
+java -jar target/gs-rest-service-0.1.0.jar
+
+*/
+

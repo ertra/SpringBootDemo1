@@ -1,23 +1,34 @@
 package me.zeman.springboot1.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Person {
 
-    String name;
-    String number;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    public String getName() {
-        return name;
+    private String firstName;
+    private String lastName;
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getNumber() {
-        return number;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
+
 }

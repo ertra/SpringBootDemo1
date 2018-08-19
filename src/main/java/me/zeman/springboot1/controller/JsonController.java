@@ -20,12 +20,12 @@ import java.util.Map;
 import java.util.Random;
 
 @Controller
-public class HelloController {
+public class JsonController {
 
     @Autowired
     private HelloService helloService;
 
-    @GetMapping("/hello")
+    @GetMapping("/json1")
     @ResponseBody
     public ArrayList<Person> greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, HttpServletRequest request,  HttpServletResponse response) {
 
@@ -34,13 +34,13 @@ public class HelloController {
         Gson j = new Gson();
         Person p = new Person();
 
-        p.setName(name);
-        p.setNumber("123");
+        p.setFirstName("Jon");
+        p.setLastName("Dow " + new Random().nextInt(10000000));
 
         Person p2 = new Person();
 
-        p2.setName("Jan");
-        p2.setNumber("123456789");
+        p2.setFirstName("Scot");
+        p2.setLastName("Tiger " + new Random().nextInt(10000000));
 
         ArrayList<Person> people = new ArrayList();
 
@@ -49,22 +49,13 @@ public class HelloController {
 
         if (r == 1){
             try {
-
+                System.out.println("my own error");
                 throw new Exception("My own exception");
-
             } catch (Exception e) {
                 System.out.println("Exception: " + e.toString());
-            } finally {
-                try {
-                    response.setContentType("text/html");
-                    response.sendError(500, "(My own message) Our internal error");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
             }
-        } else {
 
+        } else {
             response.setContentType("application/json");
         }
 
@@ -75,16 +66,6 @@ public class HelloController {
     @ResponseBody
     public String helloWorld() {
         return helloService.sayHelloWorld();
-    }
-
-    // inject via application.properties
-    @Value("${welcome.message:test}")
-    private String message = "Hello World";
-
-    @RequestMapping("/welcome")
-    public String welcome(Map<String, Object> model) {
-        model.put("message", this.message);
-        return "welcome";
     }
 
 }
