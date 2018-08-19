@@ -2,7 +2,6 @@ package me.zeman.springboot1.controller;
 
 import com.google.gson.Gson;
 import com.mashape.unirest.http.JsonNode;
-import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
 import me.zeman.springboot1.model.Person;
 import me.zeman.springboot1.service.HelloService;
 import org.apache.logging.log4j.Logger;
@@ -61,6 +60,7 @@ public class JsonController {
 
         return people;
     }
+
 
     @RequestMapping("/")
     @ResponseBody

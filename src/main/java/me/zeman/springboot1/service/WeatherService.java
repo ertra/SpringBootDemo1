@@ -5,38 +5,27 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.stereotype.Component;
+import us.monoid.web.Resty;
+
+import java.io.IOException;
 
 @Component
 public class WeatherService {
 
-    public String getWeather() {
-        String city = "Prague";
-        String country = "CZ";
+    public String getWeather(String c1, String c2) {
+        String city = c2; // Prague
+        String country = c1; // CZ
 
-        String URL = "http://api.openweathermap.org/data/2.5/weather?q=" +
-                city +
-                "," +
-                country +
-                "&appid=765590d744a203e6c96eda4b88d4bfdb&units=metric";
+        String hello = "";
 
-        HttpResponse<JsonNode> jsonResponse = null;
-
+        Resty r = new Resty();
         try {
-            jsonResponse = Unirest.get(URL)
-                    //.header("accept", "application/json")
-                    //.queryString("apiKey", "123")
-                    //.field("parameter", "value")
-                    //.field("foo", "bar")
-                    .asJson();
-        } catch (UnirestException e) {
+             hello = r.text("http://localhost:8888/weather/" +c1 +"/" + c2).toString();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        JsonNode j = jsonResponse.getBody();
-        //JSONObject obj = new JSONObject(jsonResponse.getBody().toString());
-
-        return j.toString();
-
+        return hello;
     }
 
 }
