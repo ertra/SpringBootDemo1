@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import us.monoid.web.Resty;
 
 import java.io.IOException;
+import java.util.Random;
 
 @Component
 public class WeatherService {
@@ -18,10 +19,20 @@ public class WeatherService {
 
         String hello = "";
 
-        Resty r = new Resty();
+        Random rnd = new Random();
+        int number = rnd.nextInt(20);
+
+        Resty rest = new Resty();
         try {
-             hello = r.text("http://localhost:8888/weather/" +c1 +"/" + c2).toString();
-        } catch (IOException e) {
+
+            if (number==1){
+
+                throw new Exception("Tomas Crazy Exception");
+
+            }
+             hello = rest.text("http://s2.cotopia.com:8888/weather/" +c1 +"/" + c2).toString();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
