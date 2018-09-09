@@ -28,6 +28,7 @@ public class WeatherController {
     public String helloWorld(@PathVariable String country, @PathVariable String city ,HttpServletRequest request, HttpServletResponse response) {
 
         int r = new Random().nextInt(10);
+
         if (r == 1){
 
             try {
