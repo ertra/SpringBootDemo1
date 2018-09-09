@@ -9,6 +9,10 @@ import javax.jms.Queue;
 @SpringBootApplication
 public class SpringBootDemo1Application {
 
+    public static String W_URL = "http://s2.cotopia.com:8888/weather/";
+    //public static String W_URL = "http://localhost:8888";
+
+    // TODO - finish this example
     @Bean
     public Queue queue() {
         return new ActiveMQQueue("sample.queue");
