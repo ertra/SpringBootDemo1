@@ -118,6 +118,11 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.4.1</version>
+        </dependency>
 
     </dependencies>
 
