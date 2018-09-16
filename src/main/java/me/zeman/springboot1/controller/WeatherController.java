@@ -25,7 +25,7 @@ public class WeatherController {
 
     @RequestMapping("/weather/{country}/{city}")
     @ResponseBody
-    public String helloWorld(@PathVariable String country, @PathVariable String city ,HttpServletRequest request, HttpServletResponse response) {
+    public String weatherService(@PathVariable String country, @PathVariable String city ,HttpServletRequest request, HttpServletResponse response) {
 
         int r = new Random().nextInt(10);
 
