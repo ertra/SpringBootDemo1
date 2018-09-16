@@ -32,16 +32,18 @@ public class RabbitMQController {
         Connection connection = null;
         Channel channel;
 
+        String message1 = "";
+
         try {
 
             channel = SpringBootDemo1Application.connection.createChannel();
 
             Random r = new Random();
             int c = r.nextInt(10000);
-            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            String message = "Hello World: " + c;
-            channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
-            System.out.println(" [x] Sent '" + message +  "'");
+            channel.queueDeclare(SpringBootDemo1Application.QUEUE_NAME, false, false, false, null);
+            message1 = "Hello World: " + c;
+            channel.basicPublish("", SpringBootDemo1Application.QUEUE_NAME, null, message1.getBytes());
+            //System.out.println(" [x] Sent '" + message +  "'");
             channel.close();
            // connection.close();
         } catch (IOException e) {
@@ -50,7 +52,7 @@ public class RabbitMQController {
             e.printStackTrace();
         }
 
-        return "Send : " + message;
+        return "Send : " + message1.toString();
     }
 
     static final String[] message = {""};
@@ -59,7 +61,6 @@ public class RabbitMQController {
     @GetMapping("/receive")
     @ResponseBody
     public String receive() {
-
 
         Channel channel = null;
         try {
@@ -74,17 +75,15 @@ public class RabbitMQController {
             e.printStackTrace();
         }
 
-        System.out.println(" [*] Waiting for messages");
-
-
+        //System.out.println(" [*] Waiting for messages");
 
         Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope,
                                        AMQP.BasicProperties properties, byte[] body)
                     throws IOException {
+                
                  message[0] = new String(body, "UTF-8");
-                System.out.println(" [x] Received '" + message[0] + "'");
             }
         };
 
