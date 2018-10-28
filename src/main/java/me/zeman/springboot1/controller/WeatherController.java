@@ -39,7 +39,6 @@ public class WeatherController {
 
         }
 
-
         String w = weatherService.getWeather(country,city);
 
         return w;

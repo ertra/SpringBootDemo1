@@ -93,7 +93,6 @@ public class RabbitMQController {
             e.printStackTrace();
         }
 
-
         return "Receive : " +  message[0];
     }
 

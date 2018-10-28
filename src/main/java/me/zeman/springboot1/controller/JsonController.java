@@ -28,7 +28,7 @@ public class JsonController {
     @ResponseBody
     public ArrayList<Person> greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, HttpServletRequest request,  HttpServletResponse response) {
 
-        int r = new Random().nextInt(10);
+        int r = new Random().nextInt(5);
 
         Gson j = new Gson();
         Person p = new Person();
@@ -49,9 +49,11 @@ public class JsonController {
         if (r == 1){
             try {
                 System.out.println("my own error");
-                throw new Exception("My own exception");
+                throw new Exception("My own exception in /json1");
             } catch (Exception e) {
                 System.out.println("Exception: " + e.toString());
+            } finally {
+                return null;
             }
 
         } else {

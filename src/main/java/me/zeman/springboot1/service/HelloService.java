@@ -16,7 +16,6 @@ public class HelloService {
                 "$ curl -i -X POST -H \"Content-Type:application/json\" -d \"{  \\\"firstName\\\" : \\\"Frodo\\\",  \\\"lastName\\\" : \\\"Baggins\\\" }\" http://localhost:8080/people<br/>\n" +
                 "$ curl http://localhost:8080/people/1<br/>" +
                 "</body>" +
-
                 "</html>" +
                 "";
     }
