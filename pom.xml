@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>SpringBootDemo1</name>
+    <name>SpringBootDemo1App</name>
     <description>Tomas Zeman demo project for Spring Boot</description>
 
     <parent>
