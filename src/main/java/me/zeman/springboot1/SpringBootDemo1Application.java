@@ -67,7 +67,7 @@ public class SpringBootDemo1Application {
             e.printStackTrace();
         }
 
-        System.setProperty("spring.devtools.restart.enabled", "true");
+       // System.setProperty("spring.devtools.restart.enabled", "true");
         SpringApplication.run(SpringBootDemo1Application.class, args);
 
     }
