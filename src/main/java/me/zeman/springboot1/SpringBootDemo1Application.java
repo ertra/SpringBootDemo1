@@ -21,7 +21,7 @@ import org.apache.catalina.connector.Connector;
 public class SpringBootDemo1Application {
 
     //public static String W_URL = "http://s2.cotopia.com:8888/weatherService/";
-    public static String W_URL = "http://localhost:8888";
+    public static String W_URL = "http://localhost:8888/weatherService/";
 
     public static String QUEUE_NAME = "RabbitMQ";
 
