@@ -7,6 +7,8 @@ import org.apache.activemq.command.ActiveMQQueue;
 import org.apache.catalina.connector.Connector;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import javax.jms.Queue;
 import java.io.IOException;
@@ -18,7 +20,7 @@ import org.apache.catalina.connector.Connector;
 
 
 @SpringBootApplication
-public class SpringBootDemo1Application {
+public class SpringBootDemo1Application extends SpringBootServletInitializer {
 
     //public static String W_URL = "http://s2.cotopia.com:8888/weatherService/";
     public static String W_URL = "http://localhost:8888/weatherService/";
@@ -27,6 +29,11 @@ public class SpringBootDemo1Application {
 
     public static ConnectionFactory factory = new ConnectionFactory();
     public static Connection connection = null;
+
+    public SpringBootDemo1Application() {
+        super();
+        setRegisterErrorPageFilter(false); // <- this one
+    }
 
     // TODO - finish this example
     @Bean
@@ -72,6 +79,10 @@ public class SpringBootDemo1Application {
 
     }
 
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(SpringBootDemo1Application.class);
+    }
 
 }
 
