@@ -18,7 +18,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.TimeoutException;
 import org.apache.catalina.connector.Connector;
 
-
 @SpringBootApplication
 public class SpringBootDemo1Application extends SpringBootServletInitializer {
 
